@@ -1,19 +1,18 @@
 package api.stream.desafios.foreach;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class DesafioForEach {
+public class DesafioStreamFilter {
     public static void main(String args[])
     {
         Scanner sc = new Scanner(System.in);
 
-        List<Pessoa> pessoas = new ArrayList<Pessoa>();
+        List<Pessoa1> pessoas = new ArrayList<Pessoa1>();
         while(sc.hasNext()){
-            pessoas.add(new Pessoa(sc.next(), sc.nextInt()));
+            pessoas.add(new Pessoa1(sc.next(), sc.nextInt()));
         }
 
-        List<Pessoa> maioresDeIdade = pessoas.stream()
+        List<Pessoa1> maioresDeIdade = pessoas.stream()
                 .filter(p -> p.getIdade() >= 18)
                 .toList();
 
@@ -24,11 +23,11 @@ public class DesafioForEach {
     }
 }
 
-class Pessoa {
+class Pessoa1 {
     private String nome;
     private int idade;
 
-    public Pessoa(String nome, int idade)
+    public Pessoa1(String nome, int idade)
     {
         this.nome = nome;
         this.idade = idade;
