@@ -1,9 +1,6 @@
 package api.stream;
 
-import java.util.ArrayList;
-import java.util.DoubleSummaryStatistics;
-import java.util.List;
-import java.util.OptionalDouble;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -13,6 +10,7 @@ public class Main {
 
         List<Empregado> empregados = new ArrayList<Empregado>();
         empregados.add(new Empregado(1, "Joao", 2000, "Producao"));
+        empregados.add(new Empregado(1, "Marcelo", 5000, "Producao"));
         empregados.add(new Empregado(2, "Maria", 3000, "RH"));
         empregados.add(new Empregado(3, "Jose", 5000, "Controladoria"));
         empregados.add(new Empregado(4, "Josefina", 7000, "CTO"));
@@ -62,6 +60,19 @@ public class Main {
                         .map(Empregado::getNome)
                         .reduce("Nomes dos empregados: ", (n1, n2) -> n1 + n2 + ", ");
         System.out.println(nomesSeparadosPorVirgula);
+        System.out.println("\n");
+
+        Map<String, List<Empregado>> dadosDepartamento = empregados
+                .stream()                               //Empregado::getDepartamento()
+                .collect(Collectors.groupingBy(emp -> emp.getDepartamento()));
+        System.out.println(" ** Empregados por departamento: ** ");
+        dadosDepartamento.forEach((dep, emps) -> {
+            System.out.println(" - " + dep + ", " + emps.size() + " funcionários.");
+            emps.forEach(emp -> {
+                System.out.println("    * " + emp.getNome());
+            });
+        });
+        System.out.println("\n");
 
         // Stream pipelines
         System.out.println("*** Stream pipelines: ***");
@@ -73,7 +84,7 @@ public class Main {
 
         // Exemplo prático LAZYYING LOADING
         System.out.println("### *** ### *** ###");
-        System.out.println("** FUncionários que começam com: **");
+        System.out.println("** Funcionários que começam com: **");
         Stream<Empregado> stream = empregados
                 .stream()
                 .filter(emp -> {
