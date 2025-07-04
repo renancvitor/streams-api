@@ -49,6 +49,14 @@ public class Main {
         System.out.println("Folha salarial total: R$ " + String.format("%.2f", sumary.getSum()));
         System.out.println("\n");
 
+        List<String> nomeEmpregados = empregados
+                .stream()
+                        .map(emp -> emp.getNome())
+                                .collect(Collectors.toList());
+        System.out.println("** Nomes dos empregados: **");
+        nomeEmpregados.forEach(System.out::println);
+        System.out.println("\n");
+
         // Stream pipelines
         System.out.println("*** Stream pipelines: ***");
         List<Empregado> empregadoComJ = empregados
