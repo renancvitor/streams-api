@@ -20,6 +20,8 @@ public class Main {
                 .filter( n -> n.getNome().startsWith("J"))
                 .forEach(n -> System.out.println(n.getNome()));
 
+        // Stream ainda verboso:
+        System.out.println("*** Stream ainda verboso: ***");
         List<Empregado> empregadosComJ = empregados
                 .stream()
                 .collect(Collectors.toList());
@@ -35,5 +37,12 @@ public class Main {
             System.out.println("Menor salãrio: R$ " + String.format("%.2f" ,
                     menorSalario.getAsDouble()));
         }
+
+        //Stream pipelines
+        System.out.println("*** Stream pipelines: ***");
+        List<Empregado> empregadoComJ = empregados
+                .stream()
+                .filter((emp) -> emp.getNome().startsWith("J"))
+                .collect(Collectors.toList());
     }
 }
