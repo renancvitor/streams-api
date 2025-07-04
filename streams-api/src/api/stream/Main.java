@@ -57,6 +57,12 @@ public class Main {
         nomeEmpregados.forEach(System.out::println);
         System.out.println("\n");
 
+        String nomesSeparadosPorVirgula = empregados
+                .stream()
+                        .map(Empregado::getNome)
+                        .reduce("Nomes dos empregados: ", (n1, n2) -> n1 + n2 + ", ");
+        System.out.println(nomesSeparadosPorVirgula);
+
         // Stream pipelines
         System.out.println("*** Stream pipelines: ***");
         List<Empregado> empregadoComJ = empregados
