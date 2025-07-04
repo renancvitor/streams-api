@@ -14,6 +14,13 @@ public class Empregado {
         this.departamento = departamento;
     }
 
+    @Override
+    public String toString() {
+        return "Empregado{" +
+                "nome='" + nome + '\'' +
+                '}';
+    }
+
     public long getId() {
         return id;
     }

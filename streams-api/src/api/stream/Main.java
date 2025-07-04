@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -38,11 +39,25 @@ public class Main {
                     menorSalario.getAsDouble()));
         }
 
-        //Stream pipelines
+        // Stream pipelines
         System.out.println("*** Stream pipelines: ***");
         List<Empregado> empregadoComJ = empregados
                 .stream()
                 .filter((emp) -> emp.getNome().startsWith("J"))
                 .collect(Collectors.toList());
+
+        // Exemplo prático LAZYYING LOADING
+        System.out.println("### *** ### *** ###");
+        System.out.println("** FUncionários que começam com: **");
+        Stream<Empregado> stream = empregados
+                .stream()
+                .filter(emp -> {
+                    System.out.println("*** Invocando o filter: ***");
+                    return emp.getNome().startsWith("J");
+                });
+        System.out.println("** A conversão para lista será invocada: **");
+        List<Empregado> empregadosLazyingLoading = stream
+                .collect(Collectors.toList());
+        System.out.println(empregadosLazyingLoading);
     }
 }
