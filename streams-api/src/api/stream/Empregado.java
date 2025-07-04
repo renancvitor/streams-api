@@ -14,13 +14,6 @@ public class Empregado {
         this.departamento = departamento;
     }
 
-    @Override
-    public String toString() {
-        return "Empregado{" +
-                "nome='" + nome + '\'' +
-                '}';
-    }
-
     public long getId() {
         return id;
     }
@@ -51,5 +44,11 @@ public class Empregado {
 
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
+    }
+
+
+    @Override
+    public String toString() {
+        return "\n" + nome;
     }
 }

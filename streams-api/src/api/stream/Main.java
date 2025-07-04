@@ -1,6 +1,7 @@
 package api.stream;
 
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ public class Main {
         empregados.stream()
                 .filter( n -> n.getNome().startsWith("J"))
                 .forEach(n -> System.out.println(n.getNome()));
+        System.out.println("\n");
 
         // Stream ainda verboso:
         System.out.println("*** Stream ainda verboso: ***");
@@ -38,6 +40,14 @@ public class Main {
             System.out.println("Menor salãrio: R$ " + String.format("%.2f" ,
                     menorSalario.getAsDouble()));
         }
+        DoubleSummaryStatistics sumary = empregados.stream()
+                .collect(Collectors.summarizingDouble(Empregado::getSalario));
+        System.out.println("Estatísticas do salário:");
+        System.out.println("Maior salário: R$ " + String.format("%.2f", sumary.getMax()));
+        System.out.println("Menor salário: R$ " + String.format("%.2f", sumary.getMin()));
+        System.out.println("Salãrio médio: R$ " + String.format("%.2f", sumary.getAverage()));
+        System.out.println("Folha salarial total: R$ " + String.format("%.2f", sumary.getSum()));
+        System.out.println("\n");
 
         // Stream pipelines
         System.out.println("*** Stream pipelines: ***");
@@ -45,6 +55,7 @@ public class Main {
                 .stream()
                 .filter((emp) -> emp.getNome().startsWith("J"))
                 .collect(Collectors.toList());
+        System.out.println("\n");
 
         // Exemplo prático LAZYYING LOADING
         System.out.println("### *** ### *** ###");
