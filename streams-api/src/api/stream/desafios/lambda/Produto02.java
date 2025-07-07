@@ -8,14 +8,14 @@ class DesafioLambdaProcentagem {
     {
         Scanner sc = new Scanner(System.in);
 
-        List<Produto> produtos = new ArrayList<Produto>();
+        List<Produto02> produtos = new ArrayList<Produto02>();
         while(sc.hasNext()){
-            produtos.add(new Produto(sc.next(), sc.nextDouble()));
+            produtos.add(new Produto02(sc.next(), sc.nextDouble()));
         }
 
         ControleEstoque controle = new ControleEstoque();
 
-        for(Produto p : produtos)
+        for(Produto02 p : produtos)
         {
             Estoque infracao = controle.inflacao();
             Estoque promocao = controle.promocao();
@@ -26,12 +26,12 @@ class DesafioLambdaProcentagem {
 }
 
 interface Estoque {
-    Produto operacao(Produto p);
+    Produto02 operacao(Produto02 p);
 }
 
 class ControleEstoque
 {
-    public Produto correcao(Estoque e, Produto p)
+    public Produto02 correcao(Estoque e, Produto02 p)
     {
         return e.operacao(p);
     }
@@ -39,25 +39,25 @@ class ControleEstoque
     public Estoque inflacao() {
         return (prod) -> {
             double novoPreco = prod.getPreco() + prod.getPreco() * 0.1;
-            Produto novoProduto = new Produto(prod.getNome(), novoPreco);
+            Produto02 novoProduto = new Produto02(prod.getNome(), novoPreco);
             return novoProduto;
         };
     }
 
     public Estoque promocao() {
         return (prod) -> {
-            Produto produtoInflacionado = inflacao().operacao(prod);
+            Produto02 produtoInflacionado = inflacao().operacao(prod);
             double novoPreco = produtoInflacionado.getPreco() - produtoInflacionado.getPreco() * 0.23;
-            return new Produto(prod.getNome(), novoPreco);
+            return new Produto02(prod.getNome(), novoPreco);
         };
     }
 }
 
-public class Produto {
+public class Produto02 {
     private String nome;
     private double preco;
 
-    public Produto(String nome, double preco)
+    public Produto02(String nome, double preco)
     {
         this.nome = nome;
         this.preco = preco;
