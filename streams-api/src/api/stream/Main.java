@@ -21,6 +21,9 @@ public class Main {
                 .forEach(n -> System.out.println(n.getNome()));
         System.out.println("\n");
 
+
+
+
         // Stream ainda verboso:
         System.out.println("*** Stream ainda verboso: ***");
         List<Empregado> empregadosComJ = empregados
@@ -73,6 +76,26 @@ public class Main {
             });
         });
         System.out.println("\n");
+
+        empregados
+                .stream()
+                .map(emp -> emp.getNome().substring(0, 3))
+                .forEach(System.out::println);
+        System.out.println("\n");
+
+        System.out.println("Um");
+        empregados.stream()
+                .forEach(emp -> {
+                    System.out.println(emp.getNome()); // -> invocado 5x
+                });
+
+        System.out.println("\nDois");
+        empregados.stream()
+                .forEach(System.out::print); // -> não invocado 5x
+        System.out.println("\n");
+
+
+
 
         // Stream pipelines
         System.out.println("*** Stream pipelines: ***");
