@@ -1,5 +1,6 @@
 package api.stream.desafios.stream;
 
+import api.stream.desafios.foreach.Pessoa;
 import api.stream.desafios.foreach.PessoaX;
 
 import java.util.*;
@@ -19,14 +20,11 @@ public class DesafioStream03 {
     }
 
     //Informe seu código aqui
-    static List<String> transformacao(Stream<PessoaX> pessoas) {
+    static String transformacao(Stream<PessoaX> pessoas) {
         List<String> nomes = pessoas.map(PessoaX::getNome)
                 .collect(Collectors.toList());
 
-        nomes.forEach(nome -> System.out.print(nome + " "));
-        System.out.println();
-
-        return nomes;
+        return String.join(" ", nomes);
     }
     //Informe seu código aqui
 
