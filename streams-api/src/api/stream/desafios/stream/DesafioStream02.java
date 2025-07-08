@@ -24,7 +24,7 @@ public class DesafioStream02 {
                 .filter(a -> a.getEspecie().equals("Gato"))
                 .map(a -> a.getNome())
                 .toList();
-    }
+}
 
 class Animal {
     private String nome;
